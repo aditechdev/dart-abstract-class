@@ -6,6 +6,7 @@ extension Log on Object {
   void log() => devtools.log(toString());
 }
 
+//! Part 1
 enum Type { cat, dog }
 
 abstract class CanRun {
@@ -57,6 +58,32 @@ void testIt() {
   dog.type.log();
 }
 
+//! Part 2
+abstract class CanFly {
+  fly() {
+    "Flying..".log();
+  }
+}
+
+abstract class CanSwim {
+  swim() {
+    "Swimming...".log();
+  }
+}
+
+class GoldFish with CanFly, CanSwim {}
+
+testIt2() {
+  final gld = GoldFish();
+  // gld.fly();
+  // gld.swim();
+
+  // Another way of calling above function
+  gld
+    ..fly()
+    ..swim();
+}
+
 void main() {
   runApp(const MyApp());
 }
@@ -81,7 +108,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    testIt();
+    // testIt();
+    testIt2();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home Page"),
