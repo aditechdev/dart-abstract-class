@@ -7,7 +7,10 @@ extension Log on Object {
 }
 
 abstract class CanRun {
-  void run();
+  @mustCallSuper
+  void run() {
+    "Can Run function is called".log();
+  }
 }
 
 // Dart has ability to inherit from maximum things
@@ -17,8 +20,17 @@ abstract class CanRun {
 class Cat extends CanRun {
   @override // meta tags
   void run() {
-    // TODO: implement run
+    // TO CALL THE ABSTRACT CLASS FUCTION
+    super.run();
+
+    "Cat running ..".log();
   }
+}
+
+void testIt() {
+  "testIt".log();
+  final cat = Cat();
+  cat.run();
 }
 
 void main() {
@@ -45,6 +57,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    testIt();
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home Page"),
