@@ -6,14 +6,20 @@ extension Log on Object {
   void log() => devtools.log(toString());
 }
 
+enum Type { cat, dog }
+
 abstract class CanRun {
-  String get type {
-    if (this is Cat) {
-      return "cat";
-    } else {
-      return "Something else";
-    }
-  }
+  final Type type;
+
+  CanRun({required this.type});
+  // String get type;
+  // {
+  //   if (this is Cat) {
+  //     return "cat";
+  //   } else {
+  //     return "Something else";
+  //   }
+  // }
 
   @mustCallSuper
   void run() {
@@ -26,6 +32,8 @@ abstract class CanRun {
 // Extends can work with only one
 // Inherit the Can Run abstract class
 class Cat extends CanRun {
+  Cat() : super(type: Type.cat);
+
   @override // meta tags
   void run() {
     // TO CALL THE ABSTRACT CLASS FUCTION
@@ -35,7 +43,9 @@ class Cat extends CanRun {
   }
 }
 
-class Dog extends CanRun {}
+class Dog extends CanRun {
+  Dog() : super(type: Type.dog);
+}
 
 void testIt() {
   "testIt".log();
