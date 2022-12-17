@@ -7,6 +7,14 @@ extension Log on Object {
 }
 
 abstract class CanRun {
+  String get type {
+    if (this is Cat) {
+      return "cat";
+    } else {
+      return "Something else";
+    }
+  }
+
   @mustCallSuper
   void run() {
     "Can Run function is called".log();
@@ -27,10 +35,16 @@ class Cat extends CanRun {
   }
 }
 
+class Dog extends CanRun {}
+
 void testIt() {
   "testIt".log();
   final cat = Cat();
   cat.run();
+  cat.type.log();
+  final dog = Dog();
+  dog.run();
+  dog.type.log();
 }
 
 void main() {
